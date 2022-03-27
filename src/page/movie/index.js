@@ -7,11 +7,11 @@ import Pagination from "../../components/Tables/Pagination"
 
 export default function Movie() {
     const dispatch = useDispatch()
-    const { listMovie } = useSelector((state) => state.movie)
+    const { listMovie, currentPage } = useSelector((state) => state.movie)
 
     const [startPage, setStartPage] = useState(1)
     const [endPage, setEndPage] = useState(5)
-    const [activePage, setActivePage] = useState(1)
+    const [activePage, setActivePage] = useState(currentPage)
 
     useEffect(() => {
         dispatch(fetchGenreMovies())
@@ -20,10 +20,14 @@ export default function Movie() {
 
     return (
         <div className="p-10">
+            <div className="py-4 border-b border-gray-100">
+                <h2 className="font-semibold text-gray-800">List Movie</h2>
+            </div>
             <table className="table-auto w-full">
                 <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                     <tr>
                         <TableHeader>Title</TableHeader>
+                        <TableHeader>Poster</TableHeader>
                         <TableHeader>Genre</TableHeader>
                         <TableHeader>Language</TableHeader>
                         <TableHeader>Popularity</TableHeader>
@@ -34,7 +38,7 @@ export default function Movie() {
                     {
                         listMovie?.results?.map((e, i) => {
                             return (
-                                <List key={i} data={e} index={i} />
+                                <List key={i} data={e} index={i} page={listMovie.page} />
                             )
                         })
                     }
