@@ -1,4 +1,4 @@
-import { ADD_EDUCATION, ADD_EXPERIENCE, EDUCATION, EXPERIENCE, REMOVE_EDUCATION, REMOVE_EXPERIENCE, LIST_GENRE } from "../actionType";
+import { LIST_GENRE } from "../actionType";
 
 const initialState = {
     listGenre: [],
